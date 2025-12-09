@@ -1,4 +1,4 @@
-# PIV-Analysis-for-the-circular-wound-healing
+# PIV Analysis for the circular wound healing
 This repository includes the MATLAB script, the raw data, and the TIF. images that are required to reproduce PIV results regarding the circular wound healing. 
 ## Numerical Implementation
 Provided the position data, i.e., $(x,y)$, the velocity data at each position, i.e., $(v_{x},v_{y})$, as well as the wound boundary in terms of the sign distance function (SDF) in the MATLAB file, we want to create the tangential and circumferential $2D$ field plots such that we can characterize and visualize its both local and global behaviors; that said, stretching or compression. In this regard, we can compute the velocity gradient $\mathbf{\nabla_{\mathbf{x}}}\mathbf{v}$, and hence the radial strain rate and the tangential strain rate. One can refer to the PIV guide in the repository (coming soon). In addition, we compute the divergence plots for each time frame in order to observe the wound healing situation as time evolves.
