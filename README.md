@@ -10,7 +10,7 @@ Provided the position data, i.e., $(x,y)$, the velocity data at each position, i
     dv_dx = zeros(ny, nx);
     dv_dy = zeros(ny, nx);
 
-    % Calculate gradients with First Contour SDF-aware method using new epsilon
+    % Calculate gradients with First Contour SDF-aware method using epsilon
     for i = 1:ny
         for j = 1:nx
             % Current point SDF value
