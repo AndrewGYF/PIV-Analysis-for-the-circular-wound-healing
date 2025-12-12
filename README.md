@@ -1,7 +1,7 @@
 # PIV Analysis for the circular wound healing
 This repository includes the MATLAB script, the raw data, and the TIF. images that are required to reproduce PIV results regarding the circular wound healing. 
 ## Numerical Implementation
-Provided the position data, i.e., $(x,y)$, the velocity data at each position, i.e., $(v_{x},v_{y})$, as well as the wound boundary in terms of the sign distance function (SDF) in the MATLAB file, we want to create the tangential and circumferential $2D$ field plots such that we can characterize and visualize its both local and global behaviors; that said, stretching or compression. In this regard, we can compute the velocity gradient $\mathbf{\nabla_{\mathbf{x}}}\mathbf{v}$, and hence the radial strain rate and the tangential strain rate:
+Provided the position data, i.e., $(x,y)$, the velocity data at each position, i.e., $(v_{x},v_{y})$, as well as the wound boundary in terms of the sign distance function (SDF) in the MATLAB file, we can compute the radial strain rate (strain rate that is normal to the wound contour), circumferential strain rate (strain rate that is tangential to the wound boundary), divergence (a measure of tissue growth), as well as deviatoric strain rate (shear strain rate) $2D$ field plots such that we can characterize and visualize its both local and global behaviors for the wound-healing process. In this regard, we can compute the velocity gradient $\mathbf{\nabla_{\mathbf{x}}}\mathbf{v}$ at each location, and hence the radial strain rate (\partial_{r}v(r)=\partial_{x} u\cos^{2}(\theta)+(\partial_{y} u+\partial_{x} v)\cos(\theta)\sin(\theta)+\partial_{y} v\sin^{2}(\theta)), the tangential strain rate (), the divergence, and the deviatoric strain rate (the maximum eigenvalue of $0.5(\mathbf{\nabla_{\mathbf{x}}}\mathbf{v}-\mathbf{\nabla_{\mathbf{x}}}\cdot \mathbf{v}$, where $I$ is the 2-by-2 identity matrix)). 
 ```matlab
 % Initialize gradient matrices
     [ny, nx] = size(U_grid);
@@ -10,7 +10,7 @@ Provided the position data, i.e., $(x,y)$, the velocity data at each position, i
     dv_dx = zeros(ny, nx);
     dv_dy = zeros(ny, nx);
 
-    % Calculate gradients with First Contour SDF-aware method using epsilon
+    % Calculate gradients with First Contour SDF-aware method using new epsilon
     for i = 1:ny
         for j = 1:nx
             % Current point SDF value
@@ -151,7 +151,43 @@ Provided the position data, i.e., $(x,y)$, the velocity data at each position, i
     div_velocity = du_dx + dv_dy;
     H_rr = du_dx.* (cos_theta).^2 + (du_dy + dv_dx).* cos_theta.* sin_theta + dv_dy.* (sin_theta).^2;
     H_theta_theta = du_dx.* (sin_theta).^2 - (du_dy + dv_dx).* cos_theta.* sin_theta + dv_dy.* (cos_theta).^2;
-    tr_H = H_rr + H_theta_theta;
+    tr_H = 0.5 * (H_rr + H_theta_theta);
+    
+    %% Compute Deviatoric Strain Rate (Max. eignevalue)
+    fprintf('  Computing deviatoric strain rate (max eigenvalue of ∇v - div(v)I)...\n');
+    
+    % Initialize Deviatoric Strain Rate Matrix
+    deviatoric_strain_rate = NaN(ny, nx);
+    
+    % Identity Matrix
+    I = eye(2);
+    
+    % Computing Deviatoric Strain Rate
+    for i = 1:ny
+        for j = 1:nx
+            % (not NaN and in the region SDF >= epsilon）
+            if ~isnan(du_dx(i,j)) && ~isnan(du_dy(i,j)) && ...
+               ~isnan(dv_dx(i,j)) && ~isnan(dv_dy(i,j)) && ...
+               ~isnan(div_velocity(i,j))
+                
+                % Construct Velocity Gradient Matrix 
+                grad_v = [du_dx(i,j), du_dy(i,j);
+                          dv_dx(i,j), dv_dy(i,j)];
+                
+                % Compute \nabla v - div(v)I
+                A = 0.5 * (grad_v + (grad_v)' - div_velocity(i,j) * I);
+                
+                % Compute eigenvalue
+                eig_vals = eig(A);
+                
+                % Take Max. eigenvalue as the Deviatoric Strain Rate
+                if ~isempty(eig_vals)
+                    real_vals = real(eig_vals);
+                    deviatoric_strain_rate(i,j) = max(real_vals);
+                end
+            end
+        end
+    end
 ```
 One can refer to the PIV guide in the repository (coming soon). In addition, we compute the divergence plots for each time frame in order to observe the wound healing situation as time evolves.
 ## User Manual for the MATLAB Script
