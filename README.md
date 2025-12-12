@@ -157,7 +157,7 @@ Provided the position data, i.e., $(x,y)$, the velocity data at each position, i
     fprintf('  Computing deviatoric strain rate (max eigenvalue of ∇v - div(v)I)...\n');
     
     % Initialize Deviatoric Strain Rate Matrix
-    deviatoric_strain_rate = NaN(ny, nx);
+    deviatoric_strain_rate = zeros(ny, nx);
     
     % Identity Matrix
     I = eye(2);
