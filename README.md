@@ -7,6 +7,7 @@ Provided the position data, i.e., $(x,y)$, the velocity data at each position, i
 tifFiles = dir('*.tif');
 ```
 One can access those TIF. images by this link (coming soon).
+
 2. Users will need to define the parameters in the command window once they run the script:
 ```matlab
 %% User-defined input for new parameters
