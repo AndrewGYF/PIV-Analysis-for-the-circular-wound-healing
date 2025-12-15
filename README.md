@@ -14,7 +14,7 @@ diff_order = input(['Enter the differential order n for' ...
     ' central difference (e.g., 1, 2, 3): ']);
 epsilon = input('Enter the epsilon value: ');
 ```
-where `M` specifies the regions
+where the wound region is divided into `M` regions of the same width, i.e.,$100\mu m$, by $M+1$ contuors based on the SDF (in order to preserve the geometry of the wound shape), `diff_order` suggests the increment for the numerical derivatives, and $\varepsilon$ suggests the distance by which a contour is pushed back from the wound boundary. In our simulation, we set the bin number to be nine, the differential order to be 4, and $\varepsilon$ to be 20 $\mu m$. By dividing the wound region into `M` regions of the same width 
 % Initialize gradient matrices
     [ny, nx] = size(U_grid);
     du_dx = zeros(ny, nx);
