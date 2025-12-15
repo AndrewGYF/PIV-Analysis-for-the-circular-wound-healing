@@ -206,17 +206,3 @@ where the wound region is divided into `M` regions of the same width, i.e.,$100$
     end
 ```
 One can refer to the PIV guide in the repository (coming soon). In addition, we compute the divergence plots for each time frame in order to observe the wound healing situation as time evolves.
-## User Manual for the MATLAB Script
-One should make sure that both the MATLAB file (summarizing position data, velocity data, as well as the wound boundary information in terms of the sign distance function (SDF)), as well as the TIF. images are in the current folder while running the script. The `dir` function is going to detect and hence employ those TIF. images in the current file:
-```matlab
-tifFiles = dir('*.tif');
-```
-Users will need to define the parameters in the command window:
-```matlab
-%% User-defined input for new parameters
-M = input('Enter the bin number M: ');
-diff_order = input(['Enter the differential order n for' ...
-    ' central difference (e.g., 1, 2, 3): ']);
-epsilon = input('Enter the epsilon value: ');
-```
-In our simulation, we set the bin number to be nine, the differential order to be 4, and $\varepsilon$ to be 20 $\mu m$, where the wound region is divided into `M` regions of the same width, `diff_order` suggests the increment for the numerical derivatives, and $\varepsilon$ suggests the distance by which a contour is pushed back from the wound boundary. As users finish defining those parameters, the script will create those $2D$ plots, the tangential strain rate field, the circumferential strain rate field, as well as the divergence field for each time frame. Those TIF. images will be used as a background for those $2D$ plots. 
