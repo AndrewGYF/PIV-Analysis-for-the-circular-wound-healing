@@ -1,6 +1,6 @@
 # PIV Analysis for the circular wound healing
 This repository includes the MATLAB script, the raw data, and the TIF. images that are required to reproduce PIV results regarding the circular wound healing. 
-## Numerical Implementation
+### Numerical Implementation
 Provided the position data, i.e., $(x,y)$, the velocity data at each position, i.e., $(v_{x},v_{y})$, as well as the wound boundary in terms of the sign distance function (SDF) in the MATLAB file, we can compute the radial strain rate (strain rate that is normal to the wound contour), circumferential strain rate (strain rate that is tangential to the wound boundary), divergence (a measure of tissue growth), as well as deviatoric strain rate (shear strain rate) $2D$ field plots such that we can characterize and visualize its both local and global behaviors for the wound-healing process. In this regard, we can compute the velocity gradient $\mathbf{\nabla_{\mathbf{x}}}\mathbf{v}$ at each location, and hence the radial strain rate, the tangential strain rate, the divergence, and the deviatoric strain rate at each location. Below shows the numerical implementation of those physical quantities: 
 ```matlab
 % Initialize gradient matrices
