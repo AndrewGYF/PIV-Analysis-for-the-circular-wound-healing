@@ -6,6 +6,15 @@ Provided the position data, i.e., $(x,y)$, the velocity data at each position, i
 ```matlab
 tifFiles = dir('*.tif');
 ```
+2. Users will need to define the parameters in the command window once they run the script:
+```matlab
+%% User-defined input for new parameters
+M = input('Enter the bin number M: ');
+diff_order = input(['Enter the differential order n for' ...
+    ' central difference (e.g., 1, 2, 3): ']);
+epsilon = input('Enter the epsilon value: ');
+```
+where `M` specifies the regions
 % Initialize gradient matrices
     [ny, nx] = size(U_grid);
     du_dx = zeros(ny, nx);
