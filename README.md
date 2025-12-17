@@ -1,7 +1,7 @@
 # PIV Analysis for the circular wound healing
 This repository includes the MATLAB script, the raw data, and the TIF. images that are required to reproduce PIV results regarding the circular wound healing. 
 ## User Manual for the MATLAB Script
-Based on the position data (x,y), velocity data (v_x, v_y) at each point, and the wound boundary given as a signed distance function (SDF) for each time frame (4hr, 12hr, 24hr) in the MATLAB file, we can calculate several 2D strain rate fields. These include:
+Based on the position data $(x,y)$, velocity data $(v_x, v_y)$ at each point, and the wound boundary given as a signed distance function (SDF) for each time frame (4hr, 12hr, 24hr) in the MATLAB file, we can calculate several 2D strain rate fields. These include:
 
 - Radial strain rate (normal to the wound edge)
 
