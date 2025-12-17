@@ -3,13 +3,13 @@ This repository includes the MATLAB script, the raw data, and the TIF. images th
 ## User Manual for the MATLAB Script
 Based on the position data (x,y), velocity data (v_x, v_y) at each point, and the wound boundary given as a signed distance function (SDF) for each time frame (4hr, 12hr, 24hr) in the MATLAB file, we can calculate several 2D strain rate fields. These include:
 
-Radial strain rate (normal to the wound edge)
+- Radial strain rate (normal to the wound edge)
 
-Circumferential strain rate (tangential to the wound boundary)
+- Circumferential strain rate (tangential to the wound boundary)
 
-Divergence (which indicates tissue expansion or growth)
+- Divergence (which indicates tissue expansion or growth)
 
-Deviatoric strain rate (representing shear deformation)
+- Deviatoric strain rate (representing shear deformation)
 
 The MATLAB script generates field plots for each of these quantities at every time frame. This allows us to visualize and analyze both local and global tissue behavior throughout the wound healing process.
 1. One should make sure that both the MATLAB file (summarizing position data, velocity data, as well as the wound boundary information in terms of the sign distance function (SDF)), as well as the TIF. images are in the current folder while running the script. The `dir` function is going to detect and hence employ those TIF. images in the current file:
