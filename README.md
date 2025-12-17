@@ -157,7 +157,7 @@ We define the wound contour using the sign distance function (SDF); that said, i
         end
     end
 ```
-Once we know the velocity gradient at $(i,j)$, we can compute the deviatoric strain rate as well as divergence at $(i,j)$, i.e., $\partial_{x}u(i,j)+\partial_{y}v(i,j)$ (divergence), the maximum eigenvalue of $1/2($ velocity gradient $(i,j)+$ velocity gradient $^{T}(i,j)-$ divergence $(i,j))$ (deviatoric strain rate). 
+Once we know the velocity gradient at $(i,j)$, we can compute the deviatoric strain rate as well as divergence at $(i,j)$, i.e., $\partial_{x}u(i,j)+\partial_{y}v(i,j)$ (divergence), the maximum eigenvalue of $0.5($ velocity gradient $(i,j)+$ velocity gradient $^{T}(i,j)-$ divergence $(i,j))$ (deviatoric strain rate). 
 ```
     div_velocity = du_dx + dv_dy;
     
